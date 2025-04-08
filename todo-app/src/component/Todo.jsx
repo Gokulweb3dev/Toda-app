@@ -16,8 +16,13 @@ const Todo = () => {
     if(task===null){
       return null;
     }
-    setlist([...list, { key: Date.now(), text: task}]);
+    setlist([...list, { id: Date.now(), text: task}]);
     userinput.current.value="";
+  }
+
+  const deleteitem=(id)=>{
+    console.log(id);
+    setlist(list.filter((item)=>item.id!=id));
   }
 
 
@@ -29,12 +34,12 @@ const Todo = () => {
             <img className='w-7 h-7' src={icon}></img>
             <h1> TODO LIST</h1>
         </div>
-        <div className=' flex w-full rounded-2xl bg-slate-100 h-8 mb-6'>
+        <div className=' flex w-full rounded-2xl bg-slate-100 h-8 mb-6 '>
             <input ref={userinput} className='flex-1 border-0 outline-none bg-transparent pl-5' />
             <button onClick={additem} className='bg-sky-300 w-16 rounded-2xl'>ADD</button>
         </div>
-        <div className='px-5'>
-            {list.map((item)=>{return <Todolist key={item.key} text={item.text} />})}
+        <div className='px-12'>
+            {list.map((item)=>{return <Todolist key={item.id} id={item.id} text={item.text} deleteitem={deleteitem} />})}
         </div>
     
       
