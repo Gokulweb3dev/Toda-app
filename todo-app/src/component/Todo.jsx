@@ -9,20 +9,30 @@ const Todo = () => {
   const userinput = useRef(null);
 
 
-  useEffect(()=>{console.log(list);}, [list])
+  useEffect(()=>{console.log(list);}, [])
 
   const additem=()=>{
     const task = userinput.current.value.trim();
     if(task===null){
       return null;
     }
-    setlist([...list, { id: Date.now(), text: task}]);
+    setlist([...list, { id: Date.now(), text: task, iscomplete: false}]);
     userinput.current.value="";
   }
 
   const deleteitem=(id)=>{
-    console.log(id);
     setlist(list.filter((item)=>item.id!=id));
+  }
+
+  const togglelist=(id)=>{
+  
+    setlist(list.map((item)=>{
+      if(item.id===id){
+        return {...item, iscomplete:!item.iscomplete};
+      }
+      return item;
+    }));
+
   }
 
 
@@ -39,7 +49,7 @@ const Todo = () => {
             <button onClick={additem} className='bg-sky-300 w-16 rounded-2xl'>ADD</button>
         </div>
         <div className='px-12'>
-            {list.map((item)=>{return <Todolist key={item.id} id={item.id} text={item.text} deleteitem={deleteitem} />})}
+            {list.map((item)=>{return <Todolist key={item.id} id={item.id} text={item.text} togglelist={togglelist} deleteitem={deleteitem} iscomplete={item.iscomplete} />})}
         </div>
     
       
