@@ -2,6 +2,7 @@ import React from 'react'
 import tic from '../assets/tick.png'
 import ntic from '../assets/not_tick.png'
 import del from '../assets/delete.png'
+import editicon from '../assets/icons8-edit-48.png'
 
 
 const Todolist = (data) => {
@@ -9,6 +10,7 @@ const Todolist = (data) => {
     <div className='flex py-2 items-center'>
       <button onClick={()=>{data.togglelist(data.id)}}><img className='w-6' src={data.iscomplete ? tic : ntic} /></button>
       <p className={`pl-4 font-medium flex-1  ${data.iscomplete? "line-through": ""}`}>{data.text}</p>
+      <button onClick={()=>{data.deleteitem(data.id)}} className='w-7 mr-2' ><img className='w-5' src={editicon} ></img></button>
       <button onClick={()=>{data.deleteitem(data.id)}} className='w-7' ><img className='w-5' src={del} ></img></button>
     </div>
   )

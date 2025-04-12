@@ -48,7 +48,7 @@ const Todo = () => {
             <input ref={userinput} className='flex-1 border-0 outline-none bg-transparent pl-5' />
             <button onClick={additem} className='bg-sky-300 w-16 rounded-2xl'>ADD</button>
         </div>
-        <div className='px-12'>
+        <div className='px-9'>
             {list.map((item)=>{return <Todolist key={item.id} id={item.id} text={item.text} togglelist={togglelist} deleteitem={deleteitem} iscomplete={item.iscomplete} />})}
         </div>
     
